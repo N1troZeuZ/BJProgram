@@ -1,0 +1,10 @@
+--ChangeLog--
+New Features:
+Play Again Loop: Players can now choose to play multiple rounds without restarting the program. After each game, an option to play again or quit is provided.
+
+Automatic Ace Value Adjustment: The game now automatically adjusts the value of Aces (1 or 11) to avoid exceeding 21, improving gameplay flow and hand calculation accuracy.
+
+View Cards Option: Players can view their current hand's value at any time during their turn by entering 'v', adding clarity and strategic flexibility to gameplay.
+
+Gameplay Improvements:
+User-Friendly Prompts: Enhanced input prompts to make actions (hit, stand, or view cards) more intuitive and reduce the chance of incorrect input.
