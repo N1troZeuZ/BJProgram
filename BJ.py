@@ -79,7 +79,8 @@ def play_blackjack():
             print(render_hand([dealer_hand[0], ('?', '?')]))  # Hide one dealer card
             print("\nPlayer's Hand:")
             print(render_hand(player_hand))
-            print(f"\n{hand_description(player_hand)}")
+            print(f"\nValue: {calculate_hand_value(player_hand)}")  # Display player's hand value
+            print(f"{hand_description(player_hand)}")
 
             # Player's action
             move = input("Do you want to hit or stand? (h/s): ").strip().lower()
@@ -91,6 +92,7 @@ def play_blackjack():
                     print(render_hand(dealer_hand))
                     print("\nPlayer's Hand:")
                     print(render_hand(player_hand))
+                    print(f"\nValue: {calculate_hand_value(player_hand)}")
                     print("\nBust! You went over 21. Dealer wins.")
                     break
             elif move == 's':
@@ -106,7 +108,8 @@ def play_blackjack():
                 print(render_hand(dealer_hand))
                 print("\nPlayer's Hand:")
                 print(render_hand(player_hand))
-                print(f"\n{hand_description(player_hand)}")
+                print(f"\nValue: {calculate_hand_value(player_hand)}")
+                print(f"{hand_description(player_hand)}")
 
         # Final result
         clear_screen()
@@ -115,7 +118,8 @@ def play_blackjack():
         print(f"\n{hand_description(dealer_hand)}")
         print("\nPlayer's Hand:")
         print(render_hand(player_hand))
-        print(f"\n{hand_description(player_hand)}")
+        print(f"\nValue: {calculate_hand_value(player_hand)}")
+        print(f"{hand_description(player_hand)}")
 
         player_value = calculate_hand_value(player_hand)
         dealer_value = calculate_hand_value(dealer_hand)
