@@ -1,10 +1,111 @@
 --ChangeLog--
-New Features:
-Play Again Loop: Players can now choose to play multiple rounds without restarting the program. After each game, an option to play again or quit is provided.
+Version 1.0 - Initial Release
+Core Gameplay:
 
-Automatic Ace Value Adjustment: The game now automatically adjusts the value of Aces (1 or 11) to avoid exceeding 21, improving gameplay flow and hand calculation accuracy.
+Implemented standard Blackjack game mechanics including card dealing, hand value calculation, hit/stand/double down options.
+Supported multiple players including one human and multiple AI opponents.
+Managed player balances, bets, and a leaderboard to track winnings.
+User Interface:
 
-View Cards Option: Players can view their current hand's value at any time during their turn by entering 'v', adding clarity and strategic flexibility to gameplay.
+Utilized ANSI escape codes for colored terminal output to enhance visual feedback.
+Included ASCII representations for cards and money display.
+Provided a main menu for selecting existing players, creating new players, adding AI players, deleting players, viewing the leaderboard, starting the game, and exiting.
+Data Persistence:
 
-Gameplay Improvements:
-User-Friendly Prompts: Enhanced input prompts to make actions (hit, stand, or view cards) more intuitive and reduce the chance of incorrect input.
+Stored player data, current active player, and leaderboard information in JSON files (players.json, current_player.json, leaderboard.json) for persistent storage across sessions.
+Version 1.1 - AI Player Enhancements and ASCII Art Placeholders
+AI Player Naming:
+Added "Papers, Please" Style Names:
+Introduced a predefined list of 10 unique AI player names inspired by the Eastern European theme of "Papers, Please."
+Ensured that AI players are assigned unique names from this list without duplication.
+If all names are exhausted, the game prevents adding more AI players and notifies the user.
+ASCII Art Improvements:
+Replaced Problematic ASCII Art:
+In both display_joker_card and display_title methods, replaced complex ASCII art with simple placeholder messages "insert art here" to prevent rendering issues.
+This ensures smoother gameplay without interruptions caused by ASCII art rendering problems.
+Code Refactoring:
+Updated the add_ai_players method to select and assign unique AI names from the predefined list.
+Maintained an available_ai_names list to track and prevent duplicate AI player names.
+Version 1.2 - Background Music Integration and High Win Event Trigger
+Background Music Integration:
+
+Implemented Music Playback Using pygame:
+Integrated the pygame library to handle background music playback.
+Default Background Music:
+Added functionality to play a default background music track (background_music.mp3) when the game starts.
+Music loops indefinitely to provide continuous ambiance.
+Victory Music:
+Added functionality to switch to a different music track (victory_music.mp3) when a player achieves a high win (exceeds $10,000).
+Victory music also loops indefinitely to emphasize the achievement.
+Music Control Methods:
+play_background_music(): Plays the default background music.
+switch_to_victory_music(): Switches to the victory music track.
+stop_music(): Stops any currently playing music.
+Dependencies:
+Added pygame as a prerequisite for handling music. Ensure pygame is installed (pip install pygame).
+Users must place background_music.mp3 and victory_music.mp3 in the same directory as BJ.py.
+High Win Event Trigger:
+
+Detection of High Wins:
+After each round, the game checks if any player's balance exceeds $10,000.
+Event Handling for High Wins:
+Music Change:
+Upon detecting a high win, the game switches the background music to the victory track.
+Narrative Sequence:
+Displays a series of descriptive texts in red to create a dramatic effect:
+"Suddenly you were pulled away from the table...."
+"You scream what's happening where are you taking me"
+"The men throw you into a room...."
+Before you have a chance to catch your breath you hear
+"The House... Always Wins"
+"insert art here" (Placeholder for ASCII art of a smoking gun)
+"The Last Thing You Hear Is The Click Of A Hammer"
+Player Deletion:
+After the narrative, the player who achieved the high win is automatically deleted from the game.
+The player's data is removed from players.json and the leaderboard.
+If the deleted player was the current active player, the active player is unset.
+Music Reset and Return to Main Menu:
+The game stops the victory music and resumes the default background music.
+Informs the user that the game is returning to the main menu.
+Code Additions:
+
+Music Handling:
+Imported pygame and initialized the mixer in the BlackjackGame constructor.
+Added methods to handle playing, switching, and stopping music tracks.
+High Win Detection and Handling:
+Added handle_high_win(player) method to manage the high win event sequence.
+Added delete_player_by_name(player_name) method to remove players from the game and data files.
+AI Naming:
+Continued ensuring unique AI names using the available_ai_names list.
+ASCII Art Placeholders:
+
+Replaced Specific ASCII Art with Placeholders:
+In the narrative sequence during high win events, replaced the smoking gun ASCII art with the placeholder "insert art here" to maintain consistency and prevent rendering issues.
+Additional Notes
+Dependency Installation:
+
+Ensure that pygame is installed to enable background music features:
+bash
+Copy code
+pip install pygame
+Music Files Placement:
+
+Place background_music.mp3 and victory_music.mp3 in the same directory as BJ.py.
+Ensure that the filenames match exactly or update the file paths in the code accordingly.
+Enhancements for Future Versions:
+
+ASCII Art Integration:
+
+Replace the "insert art here" placeholders with actual ASCII art as needed, ensuring compatibility with the terminal to prevent rendering issues.
+AI Name Reusability:
+
+Consider re-adding AI names back to available_ai_names when AI players are removed due to balance depletion, allowing for reusing names in future game sessions.
+Dynamic Music Control:
+
+Implement additional music controls such as pausing, resuming, or changing tracks based on other game events for a more immersive experience.
+Error Handling:
+
+The game notifies the user if the specified music files are missing, ensuring clarity on required resources.
+User Experience:
+
+Enhanced storytelling elements provide a more engaging and dramatic user experience upon significant achievements within the game.
